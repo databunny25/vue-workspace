@@ -1,7 +1,7 @@
 <!-- UserInsertView.vue -->
 <template>
     <div class="container">
-        <h1></h1>
+        <h1>회원 정보 등록</h1>
         <div class="row">
             <table class="table">
                 <tr>
@@ -73,7 +73,17 @@ export default{
             }
         }
     },
+    created(){
+        this.userInfo.join_date = this.getToday();
+    },
     methods: {
+        getToday(){
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = ('0' + (date.getMonth() + 1)).slice(-2);
+            let day = ('0' + date.getDate()).slice(-2);
+            return `${year}-${month}-${day}`;
+        },
         insertInfo(){
             // 1) 유효성 체크
             if(!this.validation()) return; //메소드 안에서 메소드 안의 함수를 호출하려면 this사용
@@ -114,7 +124,7 @@ export default{
             }
             return true;
         },
-        getSendData(){
+        getSendData(){ //다시보기
             let obj = this.userInfo;
             let delData = ["user_no"];
             let newObj = {};

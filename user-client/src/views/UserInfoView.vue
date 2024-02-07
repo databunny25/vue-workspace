@@ -100,12 +100,27 @@ export default {
         goToUpdate(userId){
             // 수정 폼 컴포넌트 호출
             console.log(userId);
-            this.$router.push({ path: '/userUpdate', query : { "userId" : userId }})
+            // this.$router.push({ path: '/userUpdate', query : { "userId" : userId }}) //query : { userId }
+            this.$router.push({ path: '/userForm', query : { "id" : userId }}) //query : { userId }
 
         },
         deleteInfo(userId){
             // 서버의 해당 데이터를 삭제
             console.log(userId);
+
+            axios
+                .delete('/api/users/'+ this.userInfo.user_id) //delete : 기본은 GET방식 참고하므로 바디가 없지만 but 프레임워크 따라 다르다!!!!!!!!!!!!!! 있을수도...
+                .then(result => {
+                    //let delNo = result.data.affectedRows;
+                    //console.log(delNo);
+                    
+                    if( result.data.affectedRows != 0 && result.data.changedRows == 0){
+                        alert('삭제되었습니다');
+                        this.$router.push({ path : '/' })
+                    }else{
+                        alert(`삭제되지 않았습니다.\n메세지를 확인해주세요\n${result.data.message}`);
+                    }
+                })
         }
     }
 }

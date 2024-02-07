@@ -3,6 +3,7 @@ import UserListView from '../views/UserListView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
 import UserInsertView from '../views/UserInsertView.vue'
 import UserUpdateView from '../views/UserUpdateView.vue'
+import UserFormView from '../views/UserFormView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/userUpdate',
     name: 'userUpdate',
     component: UserUpdateView
+  },
+  {
+    path: '/userForm',
+    name: 'userForm',
+    component: UserFormView
   }
 ]
 
